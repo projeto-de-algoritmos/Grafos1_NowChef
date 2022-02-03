@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BackgroundContainer = styled.div`
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
     background-color: #F6EEC9;
 `;

@@ -1,8 +1,9 @@
 import React from 'react';
 import {
   BackgroundContainer,  HeaderDiv, HeaderTitle, SecondTitle, StyledForm, ConfirmButton,
-  ButtonDiv, IngredientCard
+  ButtonDiv
 } from './Style';
+import IngredientCard from './Components/IngredientCard';
 
 const Homepage = () => {
 
@@ -23,10 +24,9 @@ const Homepage = () => {
       <StyledForm>
         { ingredients.map((type) => (
           <IngredientCard
-          key={type}
-          >
-            {type}
-          </IngredientCard>
+            key={Math.random()}
+            title={type}
+          />
         ))
         }
       </StyledForm>
