@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BackgroundContainer,  HeaderDiv, HeaderTitle, SecondTitle, StyledForm, ConfirmButton,
   ButtonDiv
 } from './Style';
 import IngredientCard from './Components/IngredientCard';
-import createGraph from './Graph';
+import search from './Graph';
 
 const Homepage = () => {
 
@@ -12,9 +12,28 @@ const Homepage = () => {
   "Oleo", "FarinhaDeTrigo", "CheiroVerde", "Batata", "Bacalhau",
   "Amendoim", "Azeite", "PapricaDoce", "PapricaDefumada"];
 
-  const graph = createGraph();
+  const [recipes, setRecipes] = useState([]);
+  console.log(recipes);
 
-  console.log(graph);
+  const [userIngredients, setUserIngredients] = useState([]);
+
+  useEffect(() => {
+    setUserIngredients(["Sal",])
+  }, []);
+
+  const addItem = (title) => {
+    userIngredients.push(title);
+  };
+
+  const removeItem = (title) => {
+    for(let i = 0; i < userIngredients.length; i++){
+      if(userIngredients[i] === title){
+        userIngredients[i] = userIngredients[userIngredients.length-1];
+        userIngredients[userIngredients.length-1] = title;
+        userIngredients.pop(); 
+      }
+    }
+  };
 
   return (
     <BackgroundContainer>    
@@ -31,12 +50,14 @@ const Homepage = () => {
           <IngredientCard
             key={Math.random()}
             title={type}
+            addItem={addItem}
+            removeItem={removeItem}
           />
         ))
         }
       </StyledForm>
     <ButtonDiv>
-      <ConfirmButton onClick={() => { console.log('clicou') }}>
+      <ConfirmButton onClick={() => { setRecipes(search(userIngredients)) }}>
         Confirmar
       </ConfirmButton>
     </ButtonDiv>

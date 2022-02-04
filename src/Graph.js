@@ -30,7 +30,7 @@ const ingredientes = [
     "Amendoim", "Azeite", "Páprica Doce", "Páprica Defumada"
 ];
 
-export default function createGraph() {
+function createGraph() {
     let graph = [];
 
     for(let i = 0; i < receitas.length; i++){
@@ -43,4 +43,37 @@ export default function createGraph() {
         graph.push(ingredient);
     }
     return graph;
+}
+
+export default function search(userIngredients) {
+    var graph = createGraph();
+    let possibleRecipes = [];
+    for (let i = 0; i < graph.length; i++){
+        var u = graph[i];
+        var result = false;
+        if(u.nodeType === "receita"){
+            for(let j = 0; j < u.adjacents.length; j++){
+                result = verify(u.adjacents[j], userIngredients)
+                if(!result){
+                    break;
+                }
+            };
+        }
+        if(result === true){
+            possibleRecipes.push(u);
+        }
+    }
+    return possibleRecipes;
+}
+
+function verify(value, userIngredients) {
+    var limit = userIngredients.length
+    var result = false
+    for (let i = 0; i < limit; i++) {
+        if(value === userIngredients[i]){
+            result = true;
+            break;
+        }
+    }
+    return result
 }
