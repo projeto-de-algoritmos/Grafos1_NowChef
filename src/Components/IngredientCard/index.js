@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IngredientCardButton } from './Style';
+import { IngredientCardButton, Image, Text } from './Style';
 
 const IngredientCard = ({
  title, addItem, removeItem
@@ -15,16 +15,28 @@ const IngredientCard = ({
       { selected
         ? (
           <IngredientCardButton
-            onClick={() => { setSelected(!selected); removeItem(title); }}
+            onClick={() => { setSelected(!selected); removeItem(title[0]); }}
             chosen
           >
-            {title}
+            <Image
+              src={title[1]}
+              alt="imagem do ingrediente"    
+            />
+            <Text>
+              {title[0]}
+            </Text>
           </IngredientCardButton>
         ) : (
           <IngredientCardButton 
-            onClick={() => { setSelected(!selected); addItem(title); }}
+            onClick={() => { setSelected(!selected); addItem(title[0]); }}
           >
-            {title}
+            <Image
+              src={title[1]}
+              alt="imagem do ingrediente"    
+            />
+            <Text>
+              {title[0]}
+            </Text>
           </IngredientCardButton>
         )
         }
