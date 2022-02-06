@@ -5,7 +5,7 @@ export const RecipeCardButton = styled.div`
     padding: 5px;
     border-radius: 5px;
     width: 20vw;
-    margin: 5px 0px 0px 4vw;
+    margin: 5px 2vw 0px 2vw;
     &:hover{
         -webkit-transform: scale(1.3);
         -ms-transform: scale(1.3);
