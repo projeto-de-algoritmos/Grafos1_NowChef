@@ -22,6 +22,12 @@ export const HeaderTitle = styled.p`
     font-size: 170%;
 `;
 
+export const FirstTitle = styled.p`
+    margin: 4vh 0 0 0;
+    text-align: center;
+    font-size: 26px;
+`;
+
 export const SecondTitle = styled.p`
     margin: 30px;
 `;
@@ -58,4 +64,11 @@ export const ConfirmButton = styled.div`
     justify-content: center;
     display: flex;
     cursor: pointer;
+`;
+
+export const NotFoundText = styled.p`
+    text-align: center;
+    color: red;
+    width: 100%;
+    margin: 50px 0 50px 0;
 `;

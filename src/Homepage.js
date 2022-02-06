@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {
   BackgroundContainer,  HeaderDiv, SecondTitle, StyledForm, ConfirmButton,
-  ButtonDiv
+  ButtonDiv, NotFoundText, FirstTitle,
 } from './Style';
 import IngredientCard from './Components/IngredientCard';
+import RecipeCard from './Components/RecipeCard';
 import search from './Graph';
 import Banner from '../src/Banner/banner-receitas.png';
 
@@ -26,8 +27,8 @@ const Homepage = () => {
     ["Pimenta-do-Reino", "http://premiertemperos.com.br/novo/wp-content/uploads/2020/04/1706-1-1200x675.jpg"],
   ];
 
+  const [recipeState, setRecipeState] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  console.log(recipes);
 
   const [userIngredients, setUserIngredients] = useState([]);
 
@@ -49,6 +50,28 @@ const Homepage = () => {
     }
   };
 
+  useEffect(() => {
+  },[recipeState, recipes])
+
+  const showResult = (recipes) => {
+    if(recipes.length > 0){
+      return (
+        recipes.map((type) => (
+          <RecipeCard
+            key={Math.random()}
+            title={type}
+          />
+        ))
+      )
+    } else {
+      return (
+        <NotFoundText>
+          Não achamos nenhuma receita somente com esses ingredientes. =(
+        </NotFoundText>
+      )
+    }
+  }
+
   return (
     <BackgroundContainer>    
       <HeaderDiv>
@@ -62,11 +85,23 @@ const Homepage = () => {
           }}
         />
       </HeaderDiv>
-        <SecondTitle>
-          Selecione os ingredientes que você possui em casa:
+      { recipeState 
+      ? <SecondTitle>
+          As receitas possíveis são:
         </SecondTitle>
+      : <div>
+          <FirstTitle>
+            Olá, seja bem-vindo ao NowChef!
+          </FirstTitle>
+          <SecondTitle>
+            Para saber quais receitas são possíveis fazer com os ingredientes que possui em casa basta selecionar os ingredientes e clicar no botão "confirmar" ao final da página. =)
+          </SecondTitle>
+        </div>
+      }
       <StyledForm>
-        { ingredients.map((type) => (
+      { recipeState
+        ? showResult(recipes)
+        : ingredients.map((type) => (
           <IngredientCard
             key={Math.random()}
             title={type}
@@ -77,9 +112,14 @@ const Homepage = () => {
         }
       </StyledForm>
     <ButtonDiv>
-      <ConfirmButton onClick={() => { setRecipes(search(userIngredients)) }}>
-        Confirmar
-      </ConfirmButton>
+    { recipeState
+      ? <ConfirmButton onClick={() => { setRecipeState(false); setUserIngredients(["Sal",])}}>
+          Voltar
+        </ConfirmButton>
+      : <ConfirmButton onClick={() => { setRecipes(search(userIngredients)); setRecipeState(true); }}>
+          Confirmar
+        </ConfirmButton>
+      }
     </ButtonDiv>
     </BackgroundContainer>
   );
