@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const BackgroundContainer = styled.div`
     display: flex;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     flex-direction: column;
-    background-color: #F6EEC9;
+    background-color: #eeeeee;
 `;
 
 export const HeaderDiv = styled.div`
@@ -15,13 +15,6 @@ export const HeaderDiv = styled.div`
     align-content: center;
 `;
 
-export const HeaderTitle = styled.p`
-    justify-content: center;
-    display: flex;
-    color: #A20A0A;
-    font-size: 170%;
-`;
-
 export const FirstTitle = styled.p`
     margin: 4vh 0 0 0;
     text-align: center;
@@ -29,7 +22,9 @@ export const FirstTitle = styled.p`
 `;
 
 export const SecondTitle = styled.p`
-    margin: 30px;
+    margin: 4vh 0 2vh 0;
+    text-align: center;
+    font-size: 20px;
 `;
 
 export const StyledForm = styled.div`
@@ -38,32 +33,33 @@ export const StyledForm = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0px 0px 10px 0px;
-`;
-
-export const IngredientCard = styled.div`
-    background-color: #FFA36C;
-    padding: 5px;
-    border-radius: 5px;
-    width: 20vw;
-    margin: 5px 0px 0px 4vw;
+    justify-content: center;
 `;
 
 export const ButtonDiv = styled.div`
     width: 100%;
     display: flex;
+    height:100%;
     justify-content: center;
+    align-items: flex-end;
 `;
 
 export const ConfirmButton = styled.div`
     width: 20%;
-    height: 100%;
-    margin: 10px;
+    height: 5vh;
+    margin: 10px 0 10px 0;
     background-color: #799351;
     border-radius: 15px;
     align-items: center;
     justify-content: center;
     display: flex;
     cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    &:hover{
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.05);
+    }
 `;
 
 export const NotFoundText = styled.p`
