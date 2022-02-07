@@ -1,6 +1,6 @@
 # NowChef
 
-**Número da Lista**: 21<br>
+**Número da Lista**: 1<br>
 **Conteúdo da Disciplina**: Grafos1<br>
 
 ## Alunos
